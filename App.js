@@ -22,8 +22,7 @@ mongoose
 
 app.use(
   cors({
-    origin:
-      process.env.CLIENT_URL || "https://my-content-scheduler.vercel.app/",
+    origin: process.env.CLIENT_URL || "https://my-content-scheduler.vercel.app",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
