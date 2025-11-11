@@ -8,21 +8,13 @@ const config = require("./config/config");
 const routes = require("./routes");
 const app = express();
 
-mongoose
-  .connect(config.mongoose.url, config.mongoose.options)
-  .then(() => {
-    console.log("Connected to MongoDB");
-    app.listen(config.port, () => {
-      console.log(`Server is running on port ${config.port}`);
-    });
-  })
-  .catch((err) => {
-    console.error("MongoDB connection error:", err);
-  });
+mongoose.connect(config.mongoose.url, config.mongoose.options).catch((err) => {
+  console.error("MongoDB connection error:", err);
+});
 
 app.use(
   cors({
-    origin: "*",
+    origin: config.clientUrl,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -38,4 +30,5 @@ app.use("/api/", routes);
 
 app.use(errorConverter);
 app.use(errorHandler);
+
 module.exports = app;
