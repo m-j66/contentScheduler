@@ -2,10 +2,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const cors = require("cors");
-const { jwtStrategy } = require("./config/passport");
-const { errorConverter, errorHandler } = require("./middlewares/error");
-const config = require("./config/config");
-const routes = require("./routes");
+const { jwtStrategy } = require("../config/passport");
+const { errorConverter, errorHandler } = require("../middlewares/error");
+const config = require("../config/config");
+const routes = require("../routes");
 const app = express();
 
 mongoose.connect(config.mongoose.url, config.mongoose.options).catch((err) => {
